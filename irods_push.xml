@@ -1,0 +1,19 @@
+<tool id="irods_push" name="Irods Push Tool" version="0.1.0">
+	<description>Push file in workflow to irods</description>
+	<requirements>
+		<requriement type="package" version="0.4.0">python-irodsclient</requirement>
+		<requirement type="package" version="0.4.0">irods_push</requirement>
+	<requirements>
+		
+	<command interpreter="python">irods_push.py $input</command>
+	<inputs>
+		<param format="data" name="input" type="data" label="Push file"/>
+	</inputs>
+
+	<outputs>
+		<data format="data" name="output" />
+	</outputs>
+	<help>
+	This tool will push a given file to the administrators main collection in irods.
+	</help>
+</tool>
