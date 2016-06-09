@@ -3,8 +3,23 @@ import sys
 from irods.exception import get_exception_by_code, NetworkException
 from irods.models import Collection, User, DataObject
 from irods.session import iRODSSession
+import password_obfuscation
+import getpass
+import json
 
-sess = iRODSSession(host='localhost',port=1247,user='rods',password='testpassword',zone='tempZone')
+with open("/home" + getpass.getuser() + "/.irods/.irodsA". 'r') as f:
+	first_line = f.readline().strip()
+answer = password_obfuscation.decode(first_line)
+
+with open("/home/" + getpass.getuser() + "/.irods/irods_environment.json",'r') as f:
+        data = json.load(f)
+
+port = data["irods_port"]
+host = data["irods_host"]
+zone = data["irods_zone_name"]
+username = data["irods_user_name"]
+
+sess = iRODSSession(host=host,port=port,user=username,password=answer,zone=zone)
 
 basicPath = "/tempZone/home/rods/"
 
